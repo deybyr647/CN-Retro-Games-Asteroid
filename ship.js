@@ -14,18 +14,40 @@ class Ship {
     this.size = 50
   }
   rotateLeft() {
+    this.angle -= 0.1;
     // todo
   }
   rotateRight() {
+    this.angle += 0.1;
     // todo
   }
   thrust() {
+    this.dx += Math.cos(this.angle);
+    this.dy += Math.sin(this.angle);
     // todo
   }
   step() {
-    this.x += this.dx
-    this.y += this.dy
+    this.x += this.dx;
+    this.y += this.dy;
+
+    //slow down
+    this.dx *= 0.98;
+    this.dy *= 0.98;
+
+    if (this.x > canvas.width + this.size) {
+       this.x = 0;
+    } 
+    if (this.x < 0 - this.size) {
+      this.x = canvas.width;
+    }
+    if (this.y > canvas.height + this.size) {
+      this.y = 0;
+    }
+    if (this.y < 0 - this.size) {
+      this.y = canvas.height;
+    }
   }
+
   draw() {
     ctx.save()
     ctx.translate(this.x, this.y)
@@ -34,3 +56,5 @@ class Ship {
     ctx.restore()
   }
 }
+
+

@@ -1,30 +1,31 @@
 
 // game state
 let ship = new Ship()
+let keyPressed = {}
 
 // check for user input
 window.addEventListener('keydown', event => {
-  if (event.code == 'ArrowDown') {
-    ship.dy += 1
-  }
-  if (event.code == 'ArrowLeft') {
-    ship.dx -= 1
-  }
-  if (event.code == 'ArrowRight') {
-    ship.dx += 1
-  }
-  if (event.code == 'ArrowUp') {
-    ship.dy -= 1
-  }
+  keyPressed[event.code] = true
 })
 
 window.addEventListener('keyup', event => {
+  keyPressed[event.code] = false
   // todo we might need this later...
 })
 
 // game loop
 function loop() {
   // change game state
+  if (keyPressed['ArrowLeft']) {
+    ship.rotateLeft();
+  }
+  if (keyPressed['ArrowRight']) {
+    ship.rotateRight();
+  }
+  if (keyPressed['ArrowUp']) {
+    ship.thrust();
+  }
+
   ship.step()
 
   // draw all

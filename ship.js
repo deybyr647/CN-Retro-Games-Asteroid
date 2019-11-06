@@ -14,40 +14,38 @@ class Ship {
     this.size = 50
   }
   rotateLeft() {
-    this.angle -= 0.1;
-    // todo
+    this.angle -= 0.1
   }
   rotateRight() {
-    this.angle += 0.1;
-    // todo
+    this.angle += 0.1
   }
   thrust() {
-    this.dx += Math.cos(this.angle);
-    this.dy += Math.sin(this.angle);
-    // todo
+    this.dx += Math.cos(this.angle)
+    this.dy += Math.sin(this.angle)
   }
   step() {
-    this.x += this.dx;
-    this.y += this.dy;
+    // apply speed dx,dy to ship position x,y
+    this.x += this.dx
+    this.y += this.dy
 
-    //slow down
-    this.dx *= 0.98;
-    this.dy *= 0.98;
+    // slow down by bringing speed closer to 0
+    this.dx *= 0.98
+    this.dy *= 0.98
 
+    // check if out of bound, to wrap to the other side
     if (this.x > canvas.width + this.size) {
-       this.x = 0;
-    } 
-    if (this.x < 0 - this.size) {
-      this.x = canvas.width;
+      this.x = 0
     }
-    if (this.y > canvas.height + this.size) {
-      this.y = 0;
+    if (this.x < 0 - this.size) {
+      this.x = canvas.width
+    }
+    if (this.y > canvas.height + this.size){
+      this.y = 0
     }
     if (this.y < 0 - this.size) {
-      this.y = canvas.height;
+      this.y = canvas.height
     }
   }
-
   draw() {
     ctx.save()
     ctx.translate(this.x, this.y)
@@ -56,5 +54,18 @@ class Ship {
     ctx.restore()
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
